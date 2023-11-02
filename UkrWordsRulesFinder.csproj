@@ -93,4 +93,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>IF NOT EXIST "$(TargetDir)affixes" (
+    xcopy /E /I "$(ProjectDir)affixes" "$(TargetDir)affixes"
+)
+IF NOT EXIST "$(TargetDir)dict\base.lst" (
+    xcopy /-I "$(ProjectDir)dict\base.lst" "$(TargetDir)dict\base.lst"
+)
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>
